@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { DoorGate } from "@/components/DoorGate";
-import { Invitation, EVENT_TITLE, EVENT_URDU } from "@/components/Invitation";
+import { Invitation, EVENT_DATE, EVENT_TITLE, EVENT_URDU } from "@/components/Invitation";
 import { Particles } from "@/components/Particles";
 import { AmbienceToggle } from "@/components/AmbienceToggle";
 import { Loader } from "@/components/Loader";
@@ -51,7 +51,7 @@ function Index() {
             key="doors"
             exit={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden pt-16 sm:pt-24 pb-12"
+            className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-5 py-8"
           >
             <Particles count={28} />
             <div
@@ -79,13 +79,9 @@ function Index() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="font-arabic text-gold text-xl mb-2">بسم الله</p>
-                <p className="font-display italic text-2xl sm:text-3xl text-foreground/85 mb-2 tracking-tight">
-                  Valima
-                </p>
-                <p className="text-[10px] tracking-[0.45em] uppercase text-muted-foreground mb-8 sm:mb-10">
-                  Step through the doors
-                </p>
+                <p className="font-arabic text-gold text-xl mb-1">بسم الله</p>
+                <p className="font-display italic text-4xl text-foreground pb-1">Valima</p>
+                <p className="mt-2 text-sm text-muted-foreground mb-6">{EVENT_DATE}</p>
               </motion.div>
 
               <DoorGate

@@ -58,7 +58,7 @@ export function DoorGate({
         whileHover={stage === "closed" ? { scale: 1.01 } : undefined}
         whileTap={stage === "closed" ? { scale: 0.995 } : undefined}
       >
-        <div className="relative w-full aspect-[3/4] max-h-[min(56vh,440px)] mb-16">
+        <div className="relative w-full aspect-[3/4] max-h-[min(58vh,480px)]">
           {/* Soft glow behind doors */}
           <motion.div
             className="absolute inset-[8%] rounded-2xl pointer-events-none"
@@ -203,12 +203,12 @@ export function DoorGate({
                 transition={{ duration: 0.35 }}
               >
                 <motion.div
-                  className="size-12 sm:size-14 rounded-full flex items-center justify-center"
+                  className="flex size-20 items-center justify-center rounded-full"
                   style={{
                     background:
-                      "radial-gradient(circle at 30% 28%, oklch(0.68 0.1 162), oklch(0.4 0.09 162))",
+                      "radial-gradient(circle at 32% 28%, oklch(0.7 0.1 162), oklch(0.38 0.09 162))",
                     boxShadow:
-                      "0 6px 20px oklch(0.22 0.06 162 / 0.5), inset 0 -2px 6px oklch(0.22 0.05 255 / 0.35)",
+                      "inset 0 0 0 1px oklch(0.95 0.03 160 / 0.4), 0 0 0 4px oklch(0.97 0.01 250 / 0.72), 0 8px 22px oklch(0.2 0.06 162 / 0.45)",
                   }}
                   animate={
                     stage === "closed"
@@ -221,33 +221,31 @@ export function DoorGate({
                     ease: "easeInOut",
                   }}
                 >
-                  <span className="font-arabic text-cream text-lg sm:text-xl">و</span>
+                  <span className="hk-italic pb-1 text-[1.7rem] text-cream">HK</span>
                 </motion.div>
               </motion.div>
             </div>
           </div>
 
-          {/* Names below doors — never covered by seal */}
-          <AnimatePresence>
-            {!isOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 4 }}
-                className="absolute inset-x-0 -bottom-1 translate-y-full pt-4 text-center pointer-events-none"
-              >
-                <p className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-gold/90 mb-1.5">
-                  You are invited
-                </p>
-                <p className="font-display italic text-xl sm:text-2xl text-foreground leading-tight">
-                  {titleName}
-                </p>
-                <p className="mt-1 font-arabic text-gold text-base">{eventUrdu}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </motion.button>
+
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            className="mt-5 text-center"
+          >
+            <p className="text-sm text-gold">You are invited</p>
+            <p className="mt-1 font-display text-2xl italic leading-[1.15] pb-1 text-foreground sm:text-3xl">
+              {titleName}
+            </p>
+            <p className="font-arabic text-lg text-gold">{eventUrdu}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {stage === "closed" && (
@@ -258,7 +256,7 @@ export function DoorGate({
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.35 }}
             onClick={handleOpen}
-            className="envelope-cta mt-20 group"
+            className="envelope-cta mt-6 group"
           >
             <Sparkles className="size-3.5 opacity-80" />
             <span>Open the doors</span>
